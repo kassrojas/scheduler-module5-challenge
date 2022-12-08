@@ -5,10 +5,33 @@ var textArea = "";
 var x = document.querySelector("#hour-9")
 renderLocal();
 
+
+$(function changingColor(){
+
+  var currentHour = dayjs().hour();
+  console.log(currentHour);
+
+  $('textArea').ready(function () {
+    $(this).parent().removeClass('past present future');
+
+    var time = parseInt($(this).attr('id'));
+
+    if (time > currentHour){
+      $(this).addClass('past');
+    } else if ( time === currentHour){
+      $(this).addClass('present');
+    } else {
+      $(this).addClass('future');
+    }
+  });
+})
+
+
 $(document).ready(function () {
   // TODO: Add a listener for click events on the save button. 
   $(document).on('click', '.saveBtn', function (){
-    textArea = ($(this).siblings().eq(1).val()); // targetting save button
+    textArea = ($(this).siblings().eq(1).val());
+    
     var timeBlock = ($(this).parent());
 
     localStorage.setItem("textArea", textArea);
