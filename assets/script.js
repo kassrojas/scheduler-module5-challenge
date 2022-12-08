@@ -25,14 +25,10 @@ $(function timeColorChange (){
     localStorage.setItem('hour-' + time, textArea);
   })
   
-
-  
 });
 
 function renderLocal(){
-  console.log('rendering');
   for (var i = 9; i <= 17; i++){
     $("#hour-" + i).children('.description').val(localStorage.getItem('hour-' + i));
   }
-
 };
