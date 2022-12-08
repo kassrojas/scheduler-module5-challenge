@@ -22,7 +22,7 @@ $(function timeColorChange (){
 
   });
    
-  $(saveButton).click(function (){
+  $('.saveBtn').click(function (){
     var textArea = $(this).siblings().eq(1).val();
     var time = $(this).parent().attr('id').split('-')[1];
     localStorage.setItem(textArea, time);
@@ -32,5 +32,7 @@ $(function timeColorChange (){
 });
 
 function renderLocal(){
-  x.children[1].textContent = localStorage.getItem("textArea", textArea);
+   for (var i = 9; i <= 17; i++){
+    $("#hour-" + i).children('description').val(localStorage.getItem('hour-' + i));
+   }
 }
