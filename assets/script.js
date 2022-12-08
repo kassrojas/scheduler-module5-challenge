@@ -1,40 +1,33 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var textArea = "";
-var x = document.querySelector("#hour-9")
 renderLocal();
 
 
-$(function changingColor(){
+$(function timeColorChange (){
 
   var currentHour = dayjs().hour();
-  console.log(currentHour);
 
-  $('textArea').ready(function () {
+  $('.description').each(function () {
+
     $(this).parent().removeClass('past present future');
 
-    var time = parseInt($(this).attr('id'));
+    var timeBlock = parseInt($(this).parent().attr('id').replace('hour-', ''));
 
-    if (time > currentHour){
+    if (timeBlock < currentHour){
       $(this).addClass('past');
-    } else if ( time === currentHour){
+    } else if (timeBlock === currentHour) {
       $(this).addClass('present');
     } else {
       $(this).addClass('future');
     }
+
   });
-})
-
-
-$(document).ready(function () {
   // TODO: Add a listener for click events on the save button. 
-  $(document).on('click', '.saveBtn', function (){
-    textArea = ($(this).siblings().eq(1).val());
-    
-    var timeBlock = ($(this).parent());
-
-    localStorage.setItem("textArea", textArea);
+  $(saveButton).click(function (){
+    var textArea = $(this).siblings().eq(1).val();
+    var time = $(this).parent().attr('id').split('-')[1];
+    localStorage.setItem(textArea, time);
   })
 
 
