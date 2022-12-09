@@ -20,7 +20,7 @@ $(function timeColorChange (){
   });
   
   //upon clicking .saveBtn, val() passed into localStorage
-  $('.saveBtn').click(function (){
+  $('.saveBtn').on('click', function (){
     var textInput = $(this).siblings().eq(1).val();
     var time = $(this).parent().attr('id').split('-')[1];
     localStorage.setItem('hour-' + time, textInput);
